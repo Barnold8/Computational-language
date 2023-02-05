@@ -5,8 +5,8 @@ class LAC:
 
     def _union(*argv):
         # A ∪ B = {x | x ∈ A ∨ x ∈ B}
-        sets = [x for y in [arg for arg in argv] for x in y]
-        return sets
+        return [x for y in [arg for arg in argv] for x in y]
+        
 
     def _concat(*argv):
         # A ∘ B = { xy | x ∈ ∧ y ∈ B }
