@@ -9,7 +9,7 @@ class LAC:
         return sets
 
     def _concat(*argv):
-        # 
+        # A ∘ B = { xy | x ∈ ∧ x ∈ B }
         # Note: Returns ALL possible combinations not a set amount
         return list(itertools.product(*[x for x in argv]))
 
