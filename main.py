@@ -1,6 +1,5 @@
 import itertools
 
-
 class LAC:
 
     def _union(*argv):
@@ -11,20 +10,27 @@ class LAC:
         # A ∩ B = {x | x ∈ A ∧ x ∈ B}
         result = set(argv[0])
         for lang in argv[1:]:
+            if len(lang) == 0:
+                return set([])
             result.intersection_update(lang)
-        return result
+        return result 
 
     def _concat(*argv):
         # A ∘ B = { xy | x ∈ ∧ y ∈ B }
-        # Note: Returns ALL possible combinations not a set amount
-        return list(itertools.product(*[x for x in argv]))
+        # Note: Returns ALL possible combinations. Takes lang1,lang2,lang3...langk
+        return list(itertools.product(*[x for x in argv])) if len(argv) > 1 else set([])
 
     def _star(arr,elems):
         #A* = {x₁,x₂,x₃...xₖ | k ≥ 0 ∧ x ∈ A}
-        return [x for x in arr if len(arr)-1 >= elems][:elems]
-
+        # Horribly broken. Needs work
+        _arr = arr
+        elems = elems-1
+        if elems == 0:
+            return []
+        else:
+            return LAC._concat(arr,arr)
 
 L1 = [1,2,3,4,6,7]
-L2 = [1,3,7,10]
+L2 = ['a','b']
 
-print(LAC._and(L1,L2))
+print(LAC._star(L1,2))
