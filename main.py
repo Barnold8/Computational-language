@@ -6,7 +6,13 @@ class LAC:
     def _union(*argv):
         # A ∪ B = {x | x ∈ A ∨ x ∈ B}
         return [x for y in [arg for arg in argv] for x in y]
-        
+
+    def _and(*argv):
+        # A ∩ B = {x | x ∈ A ∧ x ∈ B}
+        result = set(argv[0])
+        for lang in argv[1:]:
+            result.intersection_update(lang)
+        return result
 
     def _concat(*argv):
         # A ∘ B = { xy | x ∈ ∧ y ∈ B }
@@ -18,7 +24,7 @@ class LAC:
         return [x for x in arr if len(arr)-1 >= elems][:elems]
 
 
-f = [1,2,3,4,5,6,7,8]
-a = [10,20,30,40,50,60,70,80]
+L1 = [1,2,3,4,6,7]
+L2 = [1,3,7,10]
 
-print(LAC._star(f,100))
+print(LAC._and(L1,L2))
